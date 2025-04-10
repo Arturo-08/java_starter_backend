@@ -1,4 +1,4 @@
-package AIVP.Backend_Volunteers.Services.Dtos.RequestDto;
+package aivp.backend_volunteers.models.examples;
 
 import lombok.Data;
 

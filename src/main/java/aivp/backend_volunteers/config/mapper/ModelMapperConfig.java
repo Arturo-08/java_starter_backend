@@ -1,4 +1,4 @@
-package AIVP.Backend_Volunteers.Config.Mapper;
+package aivp.backend_volunteers.config.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

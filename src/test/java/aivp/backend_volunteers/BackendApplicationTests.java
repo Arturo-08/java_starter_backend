@@ -1,4 +1,4 @@
-package AIVP.Backend_Volunteers;
+package aivp.backend_volunteers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

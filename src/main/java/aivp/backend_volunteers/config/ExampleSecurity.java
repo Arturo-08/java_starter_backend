@@ -1,4 +1,4 @@
-package AIVP.Backend_Volunteers.Config;
+package aivp.backend_volunteers.config;
 
 public class ExampleSecurity {
     // prueba de pull request
