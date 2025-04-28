@@ -9,7 +9,6 @@ import java.time.Instant;
 @Getter
 @AllArgsConstructor
 @ToString
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HttpResponse<T> {
     private Instant timestamp;
     private int status;
