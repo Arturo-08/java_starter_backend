@@ -2,8 +2,10 @@ package aivp.backend_volunteers.controllers;
 
 import aivp.backend_volunteers.entities.UserEntity;
 import aivp.backend_volunteers.models.HttpResponse;
+import aivp.backend_volunteers.models.exceptions.ApiException;
 import aivp.backend_volunteers.models.users.UserResponseDto;
 import aivp.backend_volunteers.services.interfaces.UserService;
+import aivp.backend_volunteers.utils.Constants;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static aivp.backend_volunteers.utils.Constants.MESSAGE_OK;
-import static aivp.backend_volunteers.utils.Constants.STATUS_OK;
+import static aivp.backend_volunteers.utils.Constants.*;
 
 @RestController
 @RequestMapping("/user")
@@ -31,7 +32,12 @@ public class UserController {
     @GetMapping("/{email}")
     public ResponseEntity<HttpResponse<UserResponseDto>> getUserByEmail(@PathVariable("email") String email){
         Optional<UserEntity> user = userService.findByEmail(email);
-        UserResponseDto userDto= user.map(userService::transformResponse).orElse(null);
+
+        if (user.isEmpty()) {
+            throw new ApiException(Constants.STATUS_NOT_FOUND, USER_NOT_FOUND_BY_EMAIL + email);
+        }
+
+        UserResponseDto userDto = userService.transformResponse(user.get());
         return ResponseEntity.ok(new HttpResponse<>(STATUS_OK,userDto,MESSAGE_OK));
     }
 }

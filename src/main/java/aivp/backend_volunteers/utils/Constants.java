@@ -26,5 +26,7 @@ public class Constants {
     public static final String MESSAGE_INTERNAL_DATABASE_ERROR = "Database internal error: ";
     public static final int STATUS_SERVICE_UNAVAILABLE = 503;
     public static final String MESSAGE_SERVICE_UNAVAILABLE = "Service temporarily unavailable";
-
+    public static final String USER_NOT_FOUND_BY_EMAIL = "Usuario no encontrado con email: ";
+    public static final String USER_NOT_FOUND = "Usuario no encontrado.";
+    public static final String UNEXPECTED_ERROR = "Unexpected error: ";
 }
