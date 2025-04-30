@@ -7,7 +7,6 @@ import aivp.backend_volunteers.repositories.UserRepository;
 import aivp.backend_volunteers.services.interfaces.UserService;
 import aivp.backend_volunteers.utils.Constants;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +16,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository repository;
+
     @Override
     public List<UserEntity> findAll() {
-        try{ return repository.findAll();
+        try {
+            return repository.findAll();
         } catch (Exception e) {
             throw new DatabaseException(Constants.MESSAGE_INTERNAL_DATABASE_ERROR.concat(e.getMessage()), e);
         }

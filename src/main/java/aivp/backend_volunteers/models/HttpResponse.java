@@ -1,9 +1,9 @@
 package aivp.backend_volunteers.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+
 import java.time.Instant;
 
 @Getter

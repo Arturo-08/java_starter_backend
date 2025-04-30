@@ -2,15 +2,14 @@ package aivp.backend_volunteers.models.exceptions;
 
 import aivp.backend_volunteers.models.HttpResponse;
 import aivp.backend_volunteers.utils.Constants;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import lombok.extern.slf4j.Slf4j;
-
 
 import java.nio.file.AccessDeniedException;
 import java.time.Instant;
+
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,7 +32,7 @@ public class GlobalExceptionHandler {
         HttpResponse<String> response = new HttpResponse<>(
                 Instant.now(),
                 Constants.STATUS_INTERNAL_SERVER_ERROR,
-                Constants.MESSAGE_INTERNAL_SERVER_ERROR,
+                ex.getMessage(),
                 null
         );
         return ResponseEntity.status(response.getStatus()).body(response);

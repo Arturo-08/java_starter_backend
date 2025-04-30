@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface UserService {
     List<UserEntity> findAll();
-    Optional<UserEntity> findByEmail(String email );
+
+    Optional<UserEntity> findByEmail(String email);
+
     UserResponseDto transformResponse(UserEntity user);
 }

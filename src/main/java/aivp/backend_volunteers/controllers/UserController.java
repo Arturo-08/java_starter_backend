@@ -8,10 +8,11 @@ import aivp.backend_volunteers.services.interfaces.UserService;
 import aivp.backend_volunteers.utils.Constants;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.text.html.Option;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,12 +26,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/list-all")
-    public ResponseEntity<HttpResponse<List<UserResponseDto>>> getAllUsers(){
+    public ResponseEntity<HttpResponse<List<UserResponseDto>>> getAllUsers() {
         List<UserResponseDto> users = userService.findAll().stream().map(userService::transformResponse).toList();
-        return ResponseEntity.ok(new HttpResponse<>(STATUS_OK,users,MESSAGE_OK));
+        return ResponseEntity.ok(new HttpResponse<>(STATUS_OK, users, MESSAGE_OK));
     }
+
     @GetMapping("/{email}")
-    public ResponseEntity<HttpResponse<UserResponseDto>> getUserByEmail(@PathVariable("email") String email){
+    public ResponseEntity<HttpResponse<UserResponseDto>> getUserByEmail(@PathVariable("email") String email) {
         Optional<UserEntity> user = userService.findByEmail(email);
 
         if (user.isEmpty()) {
@@ -38,6 +40,6 @@ public class UserController {
         }
 
         UserResponseDto userDto = userService.transformResponse(user.get());
-        return ResponseEntity.ok(new HttpResponse<>(STATUS_OK,userDto,MESSAGE_OK));
+        return ResponseEntity.ok(new HttpResponse<>(STATUS_OK, userDto, MESSAGE_OK));
     }
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 public class Constants {
 
     public static final int STATUS_OK = 200;
-    public static final String MESSAGE_OK = "Request processed successfully";
+    public static final String MESSAGE_OK = "Petición exitosa";
     public static final int STATUS_CREATED = 201;
     public static final String MESSAGE_CREATED = "Resource created successfully";
     public static final int STATUS_NO_CONTENT = 204;

@@ -5,8 +5,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,7 +29,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // 1. Obtener el header Authorization
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -39,13 +36,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // 2. Extraer el token
         String jwt = authHeader.substring(7); // Salta "Bearer "
 
-        // 3. Extraer el username del token
         String username = jwtUtils.extractUsername(jwt);
 
-        // 4. Si el usuario no está autenticado todavía
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
@@ -58,12 +52,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         );
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                // 5. Setear la autenticación en el contexto
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
-        // 6. Continuar la cadena de filtros
         filterChain.doFilter(request, response);
     }
 }
