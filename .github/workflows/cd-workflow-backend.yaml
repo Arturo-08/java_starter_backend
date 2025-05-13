@@ -24,7 +24,7 @@ jobs:
     secrets: inherit
 
   continuos-deployment:
-    environment: ${{ inputs.enviroment || 'DEV' }}
+    environment: ${{ inputs.environment || 'DEV' }}
     runs-on: ubuntu-latest
     needs: continuos_integration
     permissions:
@@ -54,10 +54,9 @@ jobs:
             cd backend/
             echo "${{ secrets.GHCR_PASSWORD }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker pull ghcr.io/arturo-08/java-starter-backend:latest
-            docker stop java-starter-backend && docker rm docker pull java-starter-backend
+            docker stop java-starter-backend && docker rm java-starter-backend
             docker run -d \
               --name java-starter-backend \
-              --p 8080:8080 \
+              -p 8080:8080 \
               --env-file .env \
               ghcr.io/arturo-08/java-starter-backend:latest
-            EOF
