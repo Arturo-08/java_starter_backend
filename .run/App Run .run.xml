@@ -3,6 +3,8 @@
     <envs>
       <env name="DB_PASSWORD" value="PZAdcn67.cabz" />
       <env name="DB_USERNAME" value="postgres" />
+      <env name="JWT_SECRET_KEY" value="sjkdfhsuydhuh833uweSJDUjDHJSUIHSU38298746262DSJFKSJEInuhsdhIHUHIu" />
+      <env name="SPRING_PROFILES_ACTIVE" value="default" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="aivp.backend_volunteers.BackendApplication" />
     <module name="Backend_Volunteers" />
