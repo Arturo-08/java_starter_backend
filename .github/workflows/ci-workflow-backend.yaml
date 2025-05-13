@@ -1,18 +1,19 @@
 name: CI - Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      image_name:
+        required: false
+        type: string
+        default: ghcr.io/arturo-08/java-starter-backend
+
 permissions:
   contents: read
   packages: write
 
 jobs:
-  build:
+  continuos_integration:
     runs-on: ubuntu-latest
     environment: ${{ github.ref == 'refs/heads/main' && 'DEV' || 'PROD' }}
     steps:
