@@ -41,17 +41,23 @@ jobs:
           host: ${{ vars.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
-          source: "deploy/docker-compose.yaml"
+          source: "deploy/*"
           target: "backend/"
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ vars.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd backend/
             echo "${{ secrets.GHCR_PASSWORD }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            docker compose pull
-            docker compose up -d --remove-orphans
+            docker pull ghcr.io/arturo-08/java-starter-backend:latest
+            docker stop java-starter-backend && docker rm docker pull java-starter-backend
+            docker run -d \
+              --name java-starter-backend \
+              --p 8080:8080 \
+              --env-file .env \
+              ghcr.io/arturo-08/java-starter-backend:latest
+            EOF
