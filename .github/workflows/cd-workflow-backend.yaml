@@ -35,11 +35,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: List repo contents
-        run: ls -R
+      - name: Create .env file with actual values
+        run: |
+          echo "SPRING_PROFILES_ACTIVE=${{ vars.SPRING_PROFILES_ACTIVE }}" > deploy/.env
+          echo "APP_PORT=${{ vars.APP_PORT }}" >> deploy/.env
+          echo "DB_PASSWORD=${{ vars.DB_PASSWORD }}" >> deploy/.env
+          echo "DB_USERNAME=${{ vars.DB_USERNAME }}" >> deploy/.env
+          echo "DB_HOST=${{ vars.DB_HOST }}" >> deploy/.env
+          echo "DB_PORT=${{ vars.DB_PORT }}" >> deploy/.env
+          echo "JWT_SECRET_KEY=${{ vars.JWT_SECRET_KEY }}" >> deploy/.env
+          echo "DB_NAME=${{ vars.DB_NAME }}" >> deploy/.env
 
-      - name: List deploy folder
-        run: ls -la deploy
+      - name: Print .env file contents (for debug)
+        run: cat deploy/.env
 
       - name: Copy docker-compose to EC2
         uses: appleboy/scp-action@v0.1.4
