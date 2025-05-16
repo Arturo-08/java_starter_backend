@@ -1,8 +1,6 @@
 package aivp.backend_volunteers.controllers;
 
 import aivp.backend_volunteers.models.HttpResponse;
-import aivp.backend_volunteers.models.auth.AuthRequestDto;
-import aivp.backend_volunteers.models.auth.AuthResponseDto;
 import aivp.backend_volunteers.utils.Constants;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
