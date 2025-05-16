@@ -1,10 +1,14 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="App Run " type="Application" factoryName="Application">
     <envs>
+      <env name="APP_PORT" value="8080" />
       <env name="DB_PASSWORD" value="PZAdcn67.cabz" />
       <env name="DB_USERNAME" value="postgres" />
       <env name="JWT_SECRET_KEY" value="sjkdfhsuydhuh833uweSJDUjDHJSUIHSU38298746262DSJFKSJEInuhsdhIHUHIu" />
       <env name="SPRING_PROFILES_ACTIVE" value="default" />
+      <env name="DB_NAME" value="DB_AIVP" />
+      <env name="DB_PORT" value="5432" />
+      <env name="DB_HOST" value="localhost" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="aivp.backend_volunteers.BackendApplication" />
     <module name="Backend_Volunteers" />
